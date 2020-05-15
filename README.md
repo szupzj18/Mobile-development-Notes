@@ -1,8 +1,6 @@
 # Android-Notes
 挖了一个天大的坑
 
-<div align=center> ![Android](./pics/Android_logo.jpg) </div>
-
 ---------------------------------
 
 学习计划：
