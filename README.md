@@ -1,7 +1,7 @@
 # Android-Notes
 挖了一个天大的坑
 
-![Android](./pics/Android_logo.jpg)
+<div align=center> ![Android](./pics/Android_logo.jpg) </div>
 
 ---------------------------------
 
