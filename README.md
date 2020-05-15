@@ -1,7 +1,7 @@
 # Android-Notes
 挖了一个天大的坑
 
-![](./pics/android logo.jpg)
+![](./pics/Android logo.jpg)
 
 ---------------------------------
 
