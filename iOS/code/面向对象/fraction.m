@@ -55,6 +55,9 @@ int main(int argc, const char *argv[]){
         mFraction = [Fraction alloc];
         mFraction = [Fraction init];
 
+        //另一种创建实例的方法
+        //将 alloc 和 init结合
+        // mFraction = [Fraction new];
         //设置分子分母
         [mFraction setNumerator:1];
         [mFraction setDenominator:3];
@@ -62,6 +65,9 @@ int main(int argc, const char *argv[]){
         NSLog(@"The value of mFraction is ")
         [mFraction print];
 
+        //另一种打印方式
+        NSLog(@"The value of mFraction is %i/%i",
+            [mFraction numerator],[mFraction denominator])
         //NSLog(@"hello world!");
     }
     return 0;
