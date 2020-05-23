@@ -9,8 +9,10 @@ OC面向对象
 @interface Fraction: NSObject
 
 -(void) print;
--(void) setNumerator;
--(void) setDenominator:(int)n;
+-(void) setNumerator:(int) n;
+-(void) setDenominator:(int) n;
+-(int) numerator;
+-(int) denominator;
 
 @end
 
@@ -32,6 +34,14 @@ OC面向对象
 -(void)setDenominator:(int) n
 {
     denominator = n;
+}
+-(int)numerator
+{
+    return numerator;
+}
+-(int)denominator
+{
+    return denominator;
 }
 @end
 
