@@ -5,6 +5,7 @@ OC面向对象
 */
 
 //----------- interface部分 -------------
+
 @interface Fraction: NSObject
 
 -(void) print;
@@ -12,7 +13,9 @@ OC面向对象
 -(void) setDenominator:(int)n;
 
 @end
+
 //---------- implementation部分 ---------
+
 @implementation Fraction
 {
     int numerator;
@@ -31,7 +34,9 @@ OC面向对象
     denominator = n;
 }
 @end
+
 //----------program部分---------------
+
 int main(int argc, const char *argv[]){
     @autoreleasepool{
         Fraction *mFraction;
