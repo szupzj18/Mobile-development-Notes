@@ -51,6 +51,35 @@ OC是C的超集，也就是OC可以兼容C的所有代码，并且在C的基础�
 [myColor setColorToRed: 1.0 Green: 0.8 Blue: 0.2]; /* 呼叫方法*/
 ```
 
+### 继承
+
+#### 根类
+
+NSObject是所有类的父类。
+
+init和alloc这两个创建对象常用的方法都是来自NSObject类。
+
+#### self关键字
+
+```objective-c
+self.var; //获取self对象的var变量
+//上面的表达式等价于
+[self var]; //向当前对象发送var消息 返回var的值
+
+//同理
+self.var1.var2;
+//等价于
+[[self var1] var2];
+```
+
+
+
+### 多态、动态类型和动态绑定
+
+
+
+
+
 
 
 ## 字符串
