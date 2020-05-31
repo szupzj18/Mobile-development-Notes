@@ -72,13 +72,68 @@ self.var1.var2;
 [[self var1] var2];
 ```
 
+#### 覆盖方法
+
 
 
 ### 多态、动态类型和动态绑定
 
+#### 多态
+
+相同名称、不同的类
+
+```objective-c
+#import <Foundation/Foundation.h>
+
+@interface Complex : NSObject
+	
+```
+
+#### 编译时和运行时检查
+
+存储在id数据类型中的对象类型无法在编译阶段确定，所以在运行时才能发现错误。
+
+```objective-c
+Fraction *f1 = [Fraction new];		//分数类
+[f setReal:1.0 andImaginary:3.0]; //传送复数类方法
+//该程序在编译阶段报错 因为在 @interface Fraction 接口并没有声明 setReal:andImaginary: 方法
+
+//--------------demo---------------
+//ClassA接口
+@interface ClassA : NSObject
+{
+    int var;
+}
+-(void)initVar: (int) v;
+-(void)print;
+
+@end
+//id类型 编译阶段无法确定数据类型
+
+id test = [ClassA new];
+[test setReal:1 andImaginary:2]; // Complex类方法
+[test print];										 // Complex类方法
+
+//报错：
+//2020-05-31 08:47:08.096952+0800 first_programe[36995:1771383] -[ClassA setReal:andImaginary:]: unrecognized //selector sent to instance 0x100607c20
+```
 
 
 
+> 实际上 NSObject 支持处理动态类型的一些基本方法。这些方法可以用来在运行时判断某个对象是否是我们所希望的类类型或某个类的子类，该类型是否实现了某些我们所期望的方法。
+
+```objective-c
+Boolean b = [d isMemberOfClass: [ClassA class]]; //检查id变量 d是否是ClassA的一个实例
+if(b == true){
+  NSLog(@"object d is member of Class:ClassA.");
+}else{
+  NSLog(@"object is No member of Class:ClassA");
+}
+
+//运行结果：
+//2020-05-31 16:54:06.859495+0800 first_programe[39030:2028322] object is No member of Class:ClassA
+//Program ended with exit code: 0
+```
 
 
 
