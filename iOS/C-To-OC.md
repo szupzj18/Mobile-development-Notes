@@ -4,7 +4,7 @@
 >
 > 帮助自己更好的理解OC的设计和底层机制
 
-OC是C的超集，也就是OC可以兼容C的所有代码，并且在C的基础上做了扩展。
+OC是C的**超集**，也就是OC可以兼容C的所有代码，并且在C的基础上做了**扩展**（下面会讲到：主要是面向对象）。
 
 具体体现在：
 
@@ -72,9 +72,51 @@ self.var1.var2;
 [[self var1] var2];
 ```
 
-#### 覆盖方法
+#### 对象的初始化
+
+我们可以通过重载**init**方法来实现自定义的初始化。
+
+自定义初始化init的模板：
+
+```objective-c
+-(instancetype)init{
+  self = [super init];
+  if(self){ //若父类的初始化方法执行成功 self此时为非空的
+    //code
+  }
+  return self;
+}
+```
+
+此方法先调用父类的初始化方法
+
+```objective-c
+-(instancetype) init{ //自定义的init方法覆盖父类方法
+    return [self initWith:0 and:0];
+}
+
+//Complex initWith:and: 方法实现
+-(Complex *)initWith:(double)r and:(double)i{ //注意返回类型要和本类一致
+    self = [super init]; //调用父类init方法
+    if(self){ //初始化参数
+        self.real = r;
+        self.imaginary = i;
+    }
+    return self;
+}
+
+//自定义的init方法
+Complex *p = [Complex new];//new方法实际上就是 alloc -> init
+[p print];
+
+//运行结果
+//2020-05-31 20:16:52.177344+0800 first_programe[39806:2119481]  1 + 3i
+//Program ended with exit code: 0
+```
 
 
+
+-----
 
 ### 多态、动态类型和动态绑定
 
@@ -89,7 +131,7 @@ self.var1.var2;
 	
 ```
 
-#### 编译时和运行时检查
+#### 编译时和运行时检查❗️
 
 存储在id数据类型中的对象类型无法在编译阶段确定，所以在运行时才能发现错误。
 
@@ -112,7 +154,7 @@ Fraction *f1 = [Fraction new];		//分数类
 
 id test = [ClassA new];
 [test setReal:1 andImaginary:2]; // Complex类方法
-[test print];										 // Complex类方法
+[test print];// Complex类方法
 
 //报错：
 //2020-05-31 08:47:08.096952+0800 first_programe[36995:1771383] -[ClassA setReal:andImaginary:]: unrecognized //selector sent to instance 0x100607c20
@@ -132,6 +174,30 @@ if(b == true){
 
 //运行结果：
 //2020-05-31 16:54:06.859495+0800 first_programe[39030:2028322] object is No member of Class:ClassA
+//Program ended with exit code: 0
+```
+
+
+
+### 异常处理
+
+OC使用try-catch来处理异常。
+
+```objective-c
+//ptr 初始化为ClassA类型
+id ptr = [ClassA new];
+@try{
+  [ptr setReal:1 andImaginary:1]; //传入Complex方法的message 此处会发生异常
+}
+@catch(NSException *exp){ // 异常处理语句块
+  NSLog(@"caught %@%@",[exp name],[exp reason]); //打印异常信息：name + reason “NSInvalidArgumentException”
+}
+NSLog(@"Excution continues!");//处理完异常之后会继续运行后面的代码
+
+//运行结果：
+//2020-05-31 17:09:05.485259+0800 first_programe[39297:2041307] -[ClassA setReal:andImaginary:]: unrecognized //selector sent to instance 0x10063e1f0
+//2020-05-31 17:09:05.485399+0800 first_programe[39297:2041307] caught NSInvalidArgumentException-[ClassA //setReal:andImaginary:]: unrecognized selector sent to instance 0x10063e1f0
+//2020-05-31 17:09:05.485429+0800 first_programe[39297:2041307] Excution continues!
 //Program ended with exit code: 0
 ```
 
