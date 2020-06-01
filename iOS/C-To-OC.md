@@ -114,7 +114,7 @@ Complex *p = [Complex new];//new方法实际上就是 alloc -> init
 //Program ended with exit code: 0
 ```
 
-
+初始化的过程中还需要**alloc**方法，但是重载alloc方法并不是一个合适的做法，因为alloc方法涉及到内存的分配，所以一般来说不需要进行重载。
 
 -----
 
@@ -198,6 +198,33 @@ NSLog(@"Excution continues!");//处理完异常之后会继续运行后面的代
 //2020-05-31 17:09:05.485259+0800 first_programe[39297:2041307] -[ClassA setReal:andImaginary:]: unrecognized //selector sent to instance 0x10063e1f0
 //2020-05-31 17:09:05.485399+0800 first_programe[39297:2041307] caught NSInvalidArgumentException-[ClassA //setReal:andImaginary:]: unrecognized selector sent to instance 0x10063e1f0
 //2020-05-31 17:09:05.485429+0800 first_programe[39297:2041307] Excution continues!
+//Program ended with exit code: 0
+```
+
+## 作用域
+
+```objective-c
+// Foo代码
+@implementation Foo
+
+-(void)setGlobalVar:(int)val {
+    extern int gGlobalVar; //extern声明外部变量 此语句不会改变存储空间
+    gGlobalVar = val;
+}
+
+@end
+
+//file main.m
+int gGlobalVar = 5;//全局变量
+//func main()
+NSLog(@"gVar = %i",gGlobalVar);//打印全局变量值
+Foo *mFoo = [Foo new];
+[mFoo setGlobalVar:10];				 //在另一个class里改变全局变量
+NSLog(@"gVar = %i",gGlobalVar);
+
+//运行结果
+//2020-06-01 09:51:24.585698+0800 first_programe[41376:2298936] gVar = 5
+//2020-06-01 09:51:24.586617+0800 first_programe[41376:2298936] gVar = 10
 //Program ended with exit code: 0
 ```
 
