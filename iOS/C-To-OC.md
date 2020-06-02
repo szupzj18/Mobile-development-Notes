@@ -11,7 +11,9 @@ OC是C的**超集**，也就是OC可以兼容C的所有代码，并且在C的基
 - <a href="#1">类</a>
 - <a href="#2">字符串</a>
 - <a href="#3">消息传递机制</a>
-- <a href="#4">Foundation框架</a>
+- <a href="#4">Foundation框架</a>❎待施工
+- <a href="#4">分类和协议</a>
+- 
 
 
 
@@ -271,4 +273,82 @@ OC中传递消息给对象：
 这两者的区别是：在C++中，语句的含义是，**调用obj对象的method方法**，如果obj对象不存在该方法，那么在编译阶段就会发生错误。而在OC中，含义是**将method消息传递给obj对象**，obj对象是消息的接收者，在obj接收到这个消息后决定如何去回复它，如果obj对象所属的类没有定义此方法，则**在运行时抛出异常**。
 
 ## <a name="4">Foundation框架</a>
+
+//TODO：待施工
+
+
+
+## <a name="5">分类和协议</a>
+
+### 分类 Category
+
+可以将一类方法放在一个Category中。
+
+比如这里将数学运算<u>（MathOps）</u>放在一个**interface**中。
+
+```objective-c
+// Extend Class
+@interface Fraction (MathOps) //定义分类为Fraction的接口
+-（Fraction *) add:（Fraction *) f;
+-（Fraction *) mul:（Fraction *) f;
+-（Fraction *) sub:（Fraction *) f;
+-（Fraction *) div:（Fraction *) f;
+@end
+```
+
+然后实现这个interface。
+
+> 为什么我们需要这样的分类？
+>
+> 当我们需要在原来的Fraction类中扩展MathOps方法时，如果我们可以直接访问Fraction.h头文件时，我们似乎不需要单独创建这样的分类。
+>
+> 但是如果我们无法直接访问Fraction头文件的时候，可以通过在外部定义**FractionMathOps.h**头文件和其对应的实现文件来完成对Fraction类的扩展。
+>
+> 也就是说：分类方法可以在不直接修改原始头文件的情况下将新的方法（分类）添加到头文件当中。
+
+
+
+#### 未命名分类/类的扩展
+
+```objective-c
+@interface ClassName ()
+//define methods and instance value here
+@end
+```
+
+通过这样的方式定义的方法是**私有的**，这样可以实现对原有类的扩展，尤其是当某个类需要一些仅供自己使用的成员变量和方法时。
+
+### 协议和代理
+
+#### 协议 protocal
+
+关键字：@protocal
+
+```objective-c
+@protocal ProtocalName
+//protocal method
+  
+@end
+```
+
+
+
+> 协议是共享的一个方法列表，其中列出了一系列未实现的方法，并且通常附有说明这些方法将如何被执行，使得你可以按照需要去定义这些方法（类似于Java里的**重载**容器提供的方法以实现自己想要的效果）
+
+#### 非正式协议/抽象协议
+
+informal的协议是一组没有实现的方法，也称为**abstract协议/抽象协议**。
+
+例子：<NSScriptWhoseTests.h>文件中包含的一些方法声明
+
+```objective-c
+@interface NSObject (NSComparisonMethods)
+-(BOOL)isEqualTo:(id)object;
+//.....
+@end
+```
+
+
+
+#### 合成对象
 
