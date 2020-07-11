@@ -35,7 +35,7 @@
 
   #### IOS高级技术：
 
-  - iOS GCD（Grand Centeral Dispatch）
+  - [iOS GCD（Grand Centeral Dispatch）](https://github.com/szupzj18/Mobile-development-Notes/blob/master/iOS/iOS_GCD.md)
   - UIKit
     - apple [官方文档](<https://developer.apple.com/cn/documentation/uikit/>)
   - SwiftUI
