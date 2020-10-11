@@ -4,9 +4,7 @@
 >
 > 并且不断地丰富自己的技能树
 >
-> 最后一个小tip：如果学习的时候多问一个“为什么”就会学得更好。
-
-## 1. 基础
+> 最后一个小tip：如果学习的时候多问一个 “为什么” 就会学得更好。
 
 #### Language：
 
@@ -16,7 +14,7 @@
   - 阅读&实践《Objective-C程序设计》
   - OC基础知识
     - [面向对象](./code/面向对象/)
-    - 类目、[协议](./Protocal.md)、延展、委托模型
+    - 类目、协议、延展、委托模型
     - blocks
     - 复制、单例
     - 内存管理
@@ -35,9 +33,9 @@
 
   据说是将来很有前景的技术
 
-#### IOS技术：
+#### IOS高级技术：
 
+- [iOS GCD（Grand Centeral Dispatch）](https://github.com/szupzj18/Mobile-development-Notes/blob/master/iOS/iOS_GCD.md)
 - UIKit
   - apple [官方文档](<https://developer.apple.com/cn/documentation/uikit/>)
-- SwiftUI
-- 
+- SwiftU
